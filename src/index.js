@@ -5,7 +5,7 @@ const token = '6645546714:AAHosE0btx0a8N8YfaGDr-mEUQ1ymQkDuDs';
 const bot = new Telegraf(token);
 bot.start( async (ctx) => {
   // Get the username of the current user
-  const username = cx.from.username;
+  const username = ctx.from.username;
 
   // Welcome the user
   await ctx.reply(`Hello, ${username}! Welcome to my bot!`);
