@@ -6,9 +6,8 @@ const bot = new Telegraf(token);
 bot.start( async (ctx) => {
   // Get the username of the current user
   const username = ctx.from.username;
-
   // Welcome the user
-  await ctx.reply(`Hello, ${username}! Welcome to my bot!`);
+  await ctx.reply(`Hello, ${username}! Welcome to my bot!`+ ` ${id}`);
 
   // Send the user a list of commands
   await ctx.reply("/help - List of commands");
