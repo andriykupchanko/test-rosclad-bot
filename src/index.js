@@ -17,7 +17,9 @@ bot.start( async (ctx) => {
 });
 
 bot.command ('help',async (ctx)=>{
-  let languageCode = ctx.from.language_code ;
+
+  let languageCode = ctx.from.language_code;
+
   if(languageCode ==='en'){
     await ctx.reply(commandMessage.helpMsg.helpMainMsgEn);
   }else if(languageCode ==='uk'){
