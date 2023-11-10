@@ -5,12 +5,24 @@ const { replaceUnderscore } = require('./build/common.js');
 const token = '6645546714:AAHosE0btx0a8N8YfaGDr-mEUQ1ymQkDuDs'; 
 const bot = new Telegraf(token);
 const messageLimits = new Map(); 
-let user;
+let user = new User();
 
 bot.start( async (ctx) => {
+
+  user.isBot = ctx.from.is_bot;
+  user.id = ctx.from.id;
+  user.userName = ctx.from.username;
+
   if(!ctx.from.is_bot) {
-      user = new User(ctx.from.id,ctx.from.username,ctx.from.is_bot,ctx.from.language_code);
-      await ctx.reply(`Hello, ${replaceUnderscore(user.userName)}!\nSchedule of the Chernivtsi National University`);
+      if(user.userLaguage === 'en') {
+      await ctx.reply(`Hello, ${replaceUnderscore(user.userName)}\n`+
+        `${commandMessage.startMsg.startWelcomeMsgEn}\n\n`+
+        `${commandMessage.startMsg.startListCommandMsgEn}`);
+      }else{
+      await ctx.reply(`Привіт, ${replaceUnderscore(user.userName)}\n`+
+        `${commandMessage.startMsg.startWelcomeMsgUk}\n\n`+
+        `${commandMessage.startMsg.startListCommandMsgUk}`);
+      }
   }else{
 
   }
@@ -18,25 +30,42 @@ bot.start( async (ctx) => {
 
 bot.command ('help',async (ctx)=>{
 
-  let languageCode = ctx.from.language_code;
+  user.userLaguage = ctx.from.language_code;
 
-  if(languageCode ==='en'){
+  if(user.userLaguage  ==='en'){
     await ctx.reply(commandMessage.helpMsg.helpMainMsgEn);
-  }else if(languageCode ==='uk'){
+  }else if(user.userLaguage  ==='uk'){
       await ctx.reply(commandMessage.helpMsg.helpMainMsgUk);
   }
 });
+bot.command("group", (ctx) => {
+    ctx.reply("Select a group : ", {
+        reply_markup: {
+            inline_keyboard: [
+                /* Inline buttons. 2 side-by-side */
+                [ { text: " 231ск ", callback_data: "btn-1" },
+                 { text: " 131 ", callback_data: "btn-2" },
+                 { text: " 132 ", callback_data: "btn-3" } ],
+
+                /* One button */
+                [ { text: "Next", callback_data: "next" } ],
+                
+                /* Also, we can have URL buttons. */
+                [ { text: "Open in browser", url: "telegraf.js.org" } ]
+            ]
+        }
+    });
+});
 
  bot.on('text', async (ctx) => {
-  const userId = ctx.from.id;
 
   // Перевірка, чи є користувач в мапі лічильника
-  if (!messageLimits.has(userId)) {
+  if (!messageLimits.has(user.id)) {
     messageLimits.set(userId, 0);
   }
 
   // Отримання поточного лічильника для користувача
-  const messageCount = messageLimits.get(userId);
+  const messageCount = messageLimits.get(user.id);
 
  // Перевірка, чи не перевищена максимальна кількість повідомлень
   if (messageCount >= messageLimit) {
@@ -45,11 +74,11 @@ bot.command ('help',async (ctx)=>{
   }
 
   // Збільшення лічильника для к
-  messageLimits.set(userId, messageCount + 1);
+  messageLimits.set(user.id, messageCount + 1);
 
   // Очікування тайм-ауту перед зняттям лічильника
   setTimeout(() => {
-    messageLimits.set(userId, messageCount - 1);
+    messageLimits.set(user.id, messageCount - 1);
   }, timeOut);
 
 });
