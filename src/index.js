@@ -47,9 +47,6 @@ bot.command("group", (ctx) => {
                  { text: " 131 ", callback_data: "btn-2" },
                  { text: " 132 ", callback_data: "btn-3" } ],
 
-                /* One button */
-                [ { text: "Next", callback_data: "next" } ],
-                
                 /* Also, we can have URL buttons. */
                 [ { text: "Open in browser", url: "telegraf.js.org" } ]
             ]
