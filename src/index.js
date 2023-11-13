@@ -1,4 +1,4 @@
-const { commandMessage,timeOut,messageLimit,User} = require('./build/util.js');
+const { commandMessage,timeOut,messageLimit,obj,User} = require('./build/util.js');
 const { Telegraf } = require('telegraf');
 const { replaceUnderscore } = require('./build/common.js');
 
@@ -6,6 +6,7 @@ const token = '6645546714:AAHosE0btx0a8N8YfaGDr-mEUQ1ymQkDuDs';
 const bot = new Telegraf(token);
 const messageLimits = new Map(); 
 let user = new User();
+
 
 bot.start( async (ctx) => {
 
@@ -38,27 +39,25 @@ bot.command ('help',async (ctx)=>{
       await ctx.reply(commandMessage.helpMsg.helpMainMsgUk);
   }
 });
-bot.command("group", (ctx) => {
-    ctx.reply("Select a group : ", {
-        reply_markup: {
-            inline_keyboard: [
-                /* Inline buttons. 2 side-by-side */
-                [ { text: " 231ск ", callback_data: "btn-1" },
-                 { text: " 131 ", callback_data: "btn-2" },
-                 { text: " 132 ", callback_data: "btn-3" } ],
 
-                /* Also, we can have URL buttons. */
-                [ { text: "Open in browser", url: "telegraf.js.org" } ]
-            ]
-        }
-    });
+
+bot.command("group", (ctx) => {
+  ctx.reply("Select a group : ", {
+    reply_markup: {
+      inline_keyboard: [[...obj.groups.map((group) => ({
+        text: group,
+        callback_data: group,
+      }))]],
+    },
+  });
 });
+
 
  bot.on('text', async (ctx) => {
 
   // Перевірка, чи є користувач в мапі лічильника
   if (!messageLimits.has(user.id)) {
-    messageLimits.set(userId, 0);
+    messageLimits.set(user.id, 0);
   }
 
   // Отримання поточного лічильника для користувача

@@ -1,4 +1,4 @@
-export { commandMessage,messageLimit,timeOut,User} ;
+export {commandMessage,messageLimit,timeOut,obj,User};
 
 class User {
   protected id:string;   
@@ -14,7 +14,7 @@ class User {
       this.groop = groop;
       this.userLaguage = userLaguage;
   }
-}
+};
 const messageLimit = 3; // Максимальна кількість повідомлень на секунду
 const timeOut = 1000; // Тайм-аут в мілісекундах (1000 мс = 1 секунда)
 
@@ -45,3 +45,6 @@ const commandMessage = {
   }, 
 };
 
+const obj = {
+  groups: ["group1", "group2", "group3"],
+};

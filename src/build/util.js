@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.User = exports.timeOut = exports.messageLimit = exports.commandMessage = void 0;
+exports.User = exports.obj = exports.timeOut = exports.messageLimit = exports.commandMessage = void 0;
 class User {
     constructor(id, userName, isBot, groop, userLaguage) {
         this.id = id;
@@ -11,6 +11,7 @@ class User {
     }
 }
 exports.User = User;
+;
 const messageLimit = 3; // Максимальна кількість повідомлень на секунду
 exports.messageLimit = messageLimit;
 const timeOut = 1000; // Тайм-аут в мілісекундах (1000 мс = 1 секунда)
@@ -39,3 +40,7 @@ const commandMessage = {
     },
 };
 exports.commandMessage = commandMessage;
+const obj = {
+    groups: ["group1", "group2", "group3"],
+};
+exports.obj = obj;
