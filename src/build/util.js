@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.User = exports.obj = exports.timeOut = exports.messageLimit = exports.commandMessage = void 0;
+exports.User = exports.buttonGroup = exports.timeOut = exports.messageLimit = exports.commandMessage = void 0;
 class User {
     constructor(id, userName, isBot, groop, userLaguage) {
         this.id = id;
@@ -40,7 +40,7 @@ const commandMessage = {
     },
 };
 exports.commandMessage = commandMessage;
-const obj = {
-    groups: ["group1", "group2", "group3"],
+const buttonGroup = {
+    buttons: ["group1ihiohoi", "group2", "group3"],
 };
-exports.obj = obj;
+exports.buttonGroup = buttonGroup;

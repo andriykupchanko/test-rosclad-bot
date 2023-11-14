@@ -1,4 +1,4 @@
-export {commandMessage,messageLimit,timeOut,obj,User};
+export {commandMessage,messageLimit,timeOut,buttonGroup,User};
 
 class User {
   protected id:string;   
@@ -45,6 +45,6 @@ const commandMessage = {
   }, 
 };
 
-const obj = {
-  groups: ["group1", "group2", "group3"],
+const buttonGroup = {
+  buttons: ["group1ihiohoi", "group2", "group3"],
 };
