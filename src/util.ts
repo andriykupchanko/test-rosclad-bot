@@ -46,5 +46,5 @@ const commandMessage = {
 };
 
 const buttonGroup = {
-  buttons: ["group1ihiohoi", "group2", "group3"],
+  buttons: [{group:'231',callbackFunction:'output'}],
 };

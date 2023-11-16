@@ -1,4 +1,4 @@
-const { commandMessage,timeOut,messageLimit,obj,User} = require('./build/util.js');
+const { commandMessage,timeOut,messageLimit,buttonGroup,User} = require('./build/util.js');
 const { Telegraf } = require('telegraf');
 const { replaceUnderscore } = require('./build/common.js');
 
@@ -44,9 +44,9 @@ bot.command ('help',async (ctx)=>{
 bot.command("group", (ctx) => {
   ctx.reply("Select a group : ", {
     reply_markup: {
-      inline_keyboard: [[...obj.groups.map((group) => ({
+      inline_keyboard: [[...buttonGroup.buttons.map(({group,callbackFunction}) => ({
         text: group,
-        callback_data: group,
+        callback_data: callbackFunction,
       }))]],
     },
   });
