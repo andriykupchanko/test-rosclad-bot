@@ -29,7 +29,6 @@ const commandMessage = {
       `and all other functionality described in the help menu...`,
       
     startListCommandMsgUk:`/help - допомога та інструкції по роботі з ботом,\n`+
-      `/thelp - допомога та інструкції по роботі з ботом,\n`+
       `/today - розклад на сьогодні\n`+`/tomorrow - розклад на завтра,\n`+
       `і весь інший функціонал, описаний в меню help...`,
   },
@@ -46,5 +45,5 @@ const commandMessage = {
 };
 
 const buttonGroup = {
-  buttons: [{group:'231',callbackFunction:'output'}],
+  buttons: [{group:'231',callbackFunction:'output'},{group:'231',callbackFunction:'output'},{group:'231',callbackFunction:'output'},{group:'231',callbackFunction:'output'},{group:'231',callbackFunction:'output'},{group:'231',callbackFunction:'output'},{group:'231',callbackFunction:'output'},{group:'231',callbackFunction:'output'}],
 };

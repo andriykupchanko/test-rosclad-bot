@@ -9,8 +9,9 @@
   "watch": false,
   "keywords": [],
   "author": "",
-  "license": "ISC", 
+  "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.3.1",
     "node-telegram-bot-api": "^0.63.0",
     "openai": "^4.10.0",
     "openai-api": "^1.3.1",

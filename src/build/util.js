@@ -41,6 +41,6 @@ const commandMessage = {
 };
 exports.commandMessage = commandMessage;
 const buttonGroup = {
-    buttons: [{ group: '231', callbackFunction: 'output' }],
+    buttons: [{ group: '231', callbackFunction: 'group231' }, { group: '231', callbackFunction: 'output' }, { group: '231', callbackFunction: 'output' }, { group: '231', callbackFunction: 'output' }, { group: '231', callbackFunction: 'output' }, { group: '231', callbackFunction: 'output' }, { group: '231', callbackFunction: 'output' }, { group: '231', callbackFunction: 'output' }],
 };
 exports.buttonGroup = buttonGroup;
