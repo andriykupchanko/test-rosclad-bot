@@ -18,17 +18,17 @@ BEGIN
     END IF;
 END $$;
 
-DROP TABLE IF EXISTS numGroop;
+DROP TABLE IF EXISTS numGroup;
 
-CREATE TABLE numGroop (
-    idNumGroop SERIAL PRIMARY KEY,
+CREATE TABLE numGroup (
+    idNumGroup SERIAL PRIMARY KEY,
     nameGroop VARCHAR(15),
     nameSpecialty VARCHAR(100),
     facultet types_facultet,
     contactUse VARCHAR(150)
 );
 
-INSERT INTO numGroop (nameGroop, nameSpecialty, facultet, contactUse) 
+INSERT INTO numGroup (nameGroup, nameSpecialty, facultet, contactUse) 
 VALUES ('231 sk', '174 - Automation, computer-integrated technologies and robotics', 'nniftcn', '+380733249239 Andriy');
 
 drop TABLE numberLessons;
@@ -66,3 +66,52 @@ create table Users(
 INSERT INTO Users (login,passwords,email,nameSurename,status) VALUES ('admin','admin','admin@gmail.com','sd','Admin');
 
 select * from Users;
+
+DROP TABLE IF EXISTS lesson;
+
+DROP TYPE IF EXISTS hull_name CASCADE;
+
+CREATE TYPE hull_name AS ENUM ('1', '2', '3', '4', '5', '6', '7', '8', '9');
+
+CREATE TABLE lesson (
+    lessonId serial PRIMARY KEY,
+    lessonName varchar(100) NOT NULL,
+    dateLesson date NOT NULL,
+    teacherId int NOT NULL,
+    stydyRoom varchar(100) NOT NULL,
+    hull hull_name,
+    numLes int,
+	typeLes int,
+    FOREIGN KEY (teacherId) REFERENCES users(userid),
+    FOREIGN KEY (numLes) REFERENCES numberlessons(idnumlessons),
+	FOREIGN KEY (typeLes) REFERENCES typelesson(idtypelesson)
+);
+
+
+CREATE TABLE lesson_numgroup (
+    lessonId serial,
+    numGroupId INT,
+    PRIMARY KEY (lessonId, numGroupId),
+    FOREIGN KEY (lessonId) REFERENCES lesson(lessonId),
+    FOREIGN KEY (numGroupId) REFERENCES numGroup(idNumGroup)
+);
+
+drop table exam;
+create table exam(
+	idExam serial primary key,
+	nameExam varchar(50),
+	dateExam date,
+    teacherId int NOT NULL,
+	stydyRoom varchar(100) NOT NULL,
+	hull hull_name,
+	startTimeOfTheExam timestamp,
+	FOREIGN KEY (teacherId) REFERENCES users(userid)
+);
+
+CREATE TABLE exam_numgroup (
+    ExamId serial,
+    numGroupId INT,
+    PRIMARY KEY (ExamId, numGroupId),
+    FOREIGN KEY (ExamId) REFERENCES exam(idExam),
+    FOREIGN KEY (numGroupId) REFERENCES numGroup(idNumGroup)
+);
